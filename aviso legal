@@ -1,0 +1,32 @@
+var matrix_window;
+function MatrixWrite(string, bold, italic, speed) {
+var speed = 75;
+var height = window.screen.height;
+var width = window.screen.width;
+var win_dimensions = "height = " + eval(height + 10) + ", width = " + eval(width + 30);
+matrix_window = window.open("blank.htm", "matrix_window", win_dimensions);
+matrix_window.document.open("text/html", "replace");
+var i;
+var timer = 0;
+if(matrix_window.moveTo)
+matrix_window.moveTo(-10, -30);
+if(matrix_window.resizeBy)
+matrix_window.resizeBy(0, 50);
+matrix_window.document.write("<body bgcolor=000000 text=00ff00 onBlur='self.focus()'>");
+matrix_window.document.write("<font face=system>"); if(bold == true) matrix_window.document.write("<b>");
+if(italic == true) matrix_window.document.write("<i>");
+for(i = 0; i <= string.length; i++) {
+timer += (Math.random() * speed);
+setTimeout("matrix_window.document.write('" + string.charAt(i) + "');", timer);
+}
+timer += 2000;
+setTimeout("matrix_window.close()", timer);
+}
+var messages = new Array("Info Music es una pagina de descargas de musica copiada de pagina similares, nuestros productos son mayormente musica, videos, letras, noticias (proyectos en procesos), y productos para garantizar lo mejor al usuario. Consta de un buscador personalizado para brindarle mas servicios a nuestros visitantes. Añadimos un traductor para mejorar la calidad al extranjero. Lo publicado en el blog consta de musica en la que a veces se embede el reproductor de box.com o simplemente se colocan las caratulas de las canciones, los videos en su mayoria son contenidos de youtube.com y sus descargas de savefrom.net, las letras son editadas por los desarrolladores del mismo. Nos encuntran en facebook como facebook.com/infomusics y en twitter como twitter.com/infomusicmj . El widget de lo mas buscado en google fue introducido para mejorar el pagerank. Fue creado a finales de noviembre de 2013 ........................................................................................................................................................... NOSOTROS NO NOS HACEMOS RESPONSABLES DEL CONTENIDO DEL BLOG.  ");
+function GetRndIndex() {
+return (parseInt(Math.random() * messages.length));
+}
+function WriteRndMsg(bold, italic, speed) {
+MatrixWrite(messages[GetRndIndex()], bold, italic, speed);
+}
+// End -->
